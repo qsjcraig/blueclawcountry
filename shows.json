@@ -1,0 +1,41 @@
+[
+  {
+    "month": "Mar",
+    "day": "21",
+    "year": "2026",
+    "venue": "King's Road Brewing Company",
+    "location": "Haddonfield, NJ",
+    "time": "7PM",
+    "ticketUrl": "#",
+    "with": "Greg Jones & Gary Kopervas",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Mar",
+    "day": "27",
+    "year": "2026",
+    "venue": "Delaney's Irish Pub",
+    "location": "Cape May, NJ",
+    "time": "9:30PM",
+    "ticketUrl": "#",
+    "with": "Singer-Songwriter of Cape May Conference",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jun",
+    "day": "20",
+    "year": "2026",
+    "venue": "Barefoot Country Music Festival",
+    "location": "Wildwood, NJ",
+    "time": "1:30PM",
+    "ticketUrl": "https://barefootcountrymusicfest.com/tickets/",
+    "with": "",
+    "free": false,
+    "soldOut": false
+  }
+]
+
+
+

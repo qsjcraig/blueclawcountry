@@ -1,0 +1,36 @@
+[
+  {
+    "id": "003",
+    "type": ["show", "post"],
+    "title": "Blue Claw Country nights kick off March 21st",
+    "date": "2026-02-22",
+    "description": "",
+    "url": "#",
+    "image": "BCCN_032126_sq.png",
+    "body": "",
+    "tag": "Shows",
+    "article": ""
+  },
+  {
+    "id": "004",
+    "type": "photo",
+    "title": "Craig makes his debut at BCMF.",
+    "date": "2026-02-22",
+    "description": "",
+    "url": "#",
+    "image": "barefootUNBlur.jpg",
+    "body": "'Back to where it all began for me - Wildwood.'",
+    "tag": "photo"
+  },
+  {
+    "id": "005",
+    "type": "video",
+    "title": "Jim Riley joins Craig at The Bluebird.",
+    "date": "2026-02-22",
+    "description": "",
+    "tag": "video",
+    "url": "https://www.youtube.com/watch?v=cYydBBC0g70",
+    "embed": "https://www.youtube.com/embed/cYydBBC0g70",
+    "image": "https://img.youtube.com/vi/cYydBBC0g70/maxresdefault.jpg"
+  }
+]

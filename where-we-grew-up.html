@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where We Grew Up — Blue Claw Country</title>
+  <meta name="description" content="We're making a music video from your footage. Send us a clip of where you grew up — the places, the people, the moments that made it home." />
+  <meta property="og:title" content="Where We Grew Up — Blue Claw Country" />
+  <meta property="og:description" content="We're making a music video from your footage. Send us a clip of where you grew up — the places, the people, the moments that made it home." />
+  <meta property="og:image" content="https://blueclawcountry.com/wwguVideo.png" />
+  <meta property="og:url" content="https://blueclawcountry.com/where-we-grew-up.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Where We Grew Up — Blue Claw Country" />
+  <meta name="twitter:description" content="Send us a clip of where you grew up — the places, the people, the moments that made it home." />
+  <meta name="twitter:image" content="https://blueclawcountry.com/wwguVideo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html { overflow-x: hidden; }
+    body {
+      background: #21333D;
+      color: #F0ECE4;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --jersey-blue:   #406577;
+      --pine-barrens:  #2F4F41;
+      --wildwood:      #909e8d;
+      --barnegat-bay:  #a3b5ac;
+      --atlantic-navy: #21333D;
+      --sandy-soil:    #F0ECE4;
+      --dock-rust:     #A25632;
+      --weathered-barn:#8C2F2F;
+      --warm-gold:     #C8A84B;
+      --font-display:  'Playfair Display', Georgia, serif;
+      --font-body:     'DM Sans', sans-serif;
+      --font-headline: 'Bebas Neue', sans-serif;
+    }
+
+    /* ─── BACK NAV ────────────────────────────────────── */
+    .back-nav {
+      position: fixed;
+      top: 1.5rem; left: 1.5rem;
+      z-index: 100;
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.5);
+      background: rgba(33,51,61,0.6);
+      backdrop-filter: blur(6px);
+      padding: 10px 16px;
+      transition: all 0.25s ease;
+    }
+    .back-nav:hover { color: #fff; background: rgba(33,51,61,0.9); }
+    .back-nav svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      overflow: hidden;
+      background-image: url(parkway.jpg);
+      background-size: cover;
+      background-position: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(64,101,119,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(47,79,65,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 0% 0%, rgba(33,51,61,0.8) 0%, rgba(33,51,61,.5) 100%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--wildwood);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 10vw, 120px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--sandy-soil);
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--wildwood);
+    }
+    .hero-subtitle {
+      font-family: var(--font-headline);
+      font-size: clamp(11px, 2.8vw, 28px);
+      letter-spacing: 0.2em;
+      color: var(--barnegat-bay);
+      white-space: nowrap;
+      margin-top: 35px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+    @media (max-width: 480px) {
+      .hero-subtitle { white-space: normal; text-align: center; font-size: 11px; letter-spacing: 0.15em; }
+    }
+    .hero-cta {
+      display: inline-block;
+      font-family: var(--font-headline);
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      color: var(--sandy-soil);
+      background: var(--dock-rust);
+      padding: 16px 48px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+    .hero-cta:hover { background: #b8623e; transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(240,236,228,0.2);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(240,236,228,0.2), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    /* ─── PERSONAL INVITE VIDEO ─────────────────────────── */
+    .invite-video {
+      padding: 80px 48px;
+      background: var(--atlantic-navy);
+      text-align: center;
+    }
+    .invite-inner {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .invite-video-wrap {
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: rgba(64,101,119,0.15);
+      border: 1px solid rgba(240,236,228,0.06);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .invite-video-wrap video,
+    .invite-video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+    .invite-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: linear-gradient(160deg, rgba(64,101,119,0.2), rgba(47,79,65,0.15));
+    }
+    .invite-play {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(240,236,228,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .invite-play svg {
+      width: 24px;
+      height: 24px;
+      fill: rgba(240,236,228,0.5);
+      margin-left: 3px;
+    }
+    .invite-placeholder span {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(240,236,228,0.3);
+      letter-spacing: 0.05em;
+    }
+    .invite-caption {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--wildwood);
+    }
+
+    /* ─── THE ASK ──────────────────────────────────────── */
+    .the-ask {
+      padding: 100px 48px;
+      background: var(--pine-barrens);
+      position: relative;
+    }
+    .the-ask::before {
+      content: '"';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 40vw;
+      color: rgba(240,236,228,0.02);
+      top: -10%;
+      right: -5%;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .ask-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .ask-text-side {}
+    .ask-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.5);
+      margin-bottom: 20px;
+    }
+    .ask-heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--sandy-soil);
+      margin-bottom: 24px;
+    }
+    .ask-heading em {
+      font-style: italic;
+      color: var(--sandy-soil);
+      opacity: 0.7;
+    }
+    .ask-body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.85;
+      color: rgba(240,236,228,0.7);
+      font-weight: 300;
+    }
+    .ask-body p { margin-bottom: 16px; }
+    .ask-details {
+      background: var(--atlantic-navy);
+      padding: 40px;
+    }
+    .ask-details h3 {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      letter-spacing: 0.15em;
+      color: var(--sandy-soil);
+      margin-bottom: 24px;
+    }
+    .detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .detail-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: rgba(240,236,228,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .detail-icon svg { width: 16px; height: 16px; fill: var(--wildwood); }
+    .detail-text h4 {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sandy-soil);
+      margin-bottom: 4px;
+    }
+    .detail-text p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(240,236,228,0.5);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ─── WHAT WE'RE LOOKING FOR ──────────────────────── */
+    .inspiration {
+      padding: 100px 48px;
+      background: var(--atlantic-navy);
+    }
+    .inspiration-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .inspiration-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--wildwood);
+      margin-bottom: 20px;
+    }
+    .inspiration-heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--sandy-soil);
+      margin-bottom: 48px;
+    }
+    .idea-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+    .idea-card {
+      background: rgba(64,101,119,0.25);
+      border: 1px solid rgba(240,236,228,0.06);
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    .idea-card:hover {
+      border-color: rgba(47,79,65,0.4);
+      background: rgba(64,101,119,0.35);
+    }
+    .idea-card h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--sandy-soil);
+      margin-bottom: 8px;
+    }
+    .idea-card p {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(240,236,228,0.5);
+      font-weight: 300;
+    }
+    .inspiration-note {
+      margin-top: 48px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 20px;
+      color: rgba(240,236,228,0.4);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* ─── HOW TO SUBMIT ───────────────────────────────── */
+    .submit-section {
+      padding: 100px 48px;
+      background: var(--pine-barrens);
+      text-align: center;
+    }
+    .submit-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .submit-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.5);
+      margin-bottom: 20px;
+    }
+    .submit-heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--sandy-soil);
+      margin-bottom: 16px;
+    }
+    .submit-sub {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: rgba(240,236,228,0.5);
+      font-weight: 300;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .submit-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .submit-option {
+      background: var(--atlantic-navy);
+      padding: 40px 32px;
+      text-align: center;
+      border: 1px solid rgba(240,236,228,0.06);
+      transition: all 0.3s ease;
+    }
+    .submit-option:hover {
+      border-color: rgba(47,79,65,0.4);
+    }
+    .submit-option svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--wildwood);
+      margin-bottom: 16px;
+    }
+    .submit-option h4 {
+      font-family: var(--font-headline);
+      font-size: 18px;
+      letter-spacing: 0.15em;
+      color: var(--sandy-soil);
+      margin-bottom: 8px;
+    }
+    .submit-option p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(240,236,228,0.5);
+      line-height: 1.6;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+    .submit-option a {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--wildwood);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(163,181,172,0.3);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+    .submit-option a:hover { color: var(--sandy-soil); border-color: var(--sandy-soil); }
+
+    .submit-hashtag {
+      font-family: var(--font-headline);
+      font-size: clamp(24px, 4vw, 40px);
+      letter-spacing: 0.1em;
+      color: var(--sandy-soil);
+      margin-bottom: 12px;
+    }
+    .submit-hashtag-note {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(240,236,228,0.35);
+      font-weight: 300;
+    }
+
+    /* ─── DEADLINE ─────────────────────────────────────── */
+    .deadline {
+      padding: 80px 48px;
+      background: var(--atlantic-navy);
+      text-align: center;
+      border-top: 1px solid rgba(240,236,228,0.06);
+      border-bottom: 1px solid rgba(240,236,228,0.06);
+    }
+    .deadline-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .deadline-label {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240,236,228,0.3);
+      margin-bottom: 12px;
+    }
+    .deadline-date {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      color: var(--sandy-soil);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .deadline-note {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(240,236,228,0.4);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ─── SIGNUP CTA ──────────────────────────────────── */
+    .signup-cta {
+      padding: 100px 48px;
+      background: var(--sandy-soil);
+      text-align: center;
+    }
+    .signup-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .signup-eyebrow {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--jersey-blue);
+      margin-bottom: 16px;
+    }
+    .signup-heading {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 700;
+      color: var(--atlantic-navy);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .signup-body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: #4a5f6a;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .signup-btn {
+      display: inline-block;
+      font-family: var(--font-headline);
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      color: var(--sandy-soil);
+      background: var(--dock-rust);
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .signup-btn:hover { background: #b8623e; transform: translateY(-2px); }
+    .signup-heading em { font-style: italic; }
+    .email-form { display: flex; flex-direction: column; gap: 10px; max-width: 560px; margin: 0 auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .email-form input { width: 100%; padding: 14px 18px; background: #fff; border: 1px solid rgba(33,51,61,0.15); font-family: var(--font-body); font-size: 14px; color: var(--atlantic-navy); outline: none; transition: border-color 0.2s; }
+    .email-form input::placeholder { color: #9aadba; }
+    .email-form input:focus { border-color: var(--jersey-blue); }
+    .form-submit { margin-top: 6px; padding: 16px; background: var(--dock-rust); color: #fff; border: none; font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease; }
+    .form-submit:hover { background: #b8623e; }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { padding: 100px 24px 60px; }
+      .the-ask, .inspiration, .submit-section, .signup-cta { padding: 72px 24px; }
+      .deadline { padding: 60px 24px; }
+      .ask-inner { grid-template-columns: 1fr; gap: 40px; }
+      .idea-grid { grid-template-columns: 1fr; }
+      .submit-options { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .back-nav { top: 1rem; left: 1rem; font-size: 10px; }
+    }
+
+    /* ─── ANNOUNCEMENT BANNER ────────────────────────────────────────── */
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10002;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(17,26,31,0.96);
+      backdrop-filter: blur(8px);
+      padding: 14px 48px;
+    }
+    .nav-logo { height: 64px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); transition: height 0.4s ease; }
+    nav.scrolled .nav-logo { height: 48px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.88); text-decoration: none;
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; transition: color 0.25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--barnegat-bay); transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-bcc {
+      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.88) !important; text-decoration: none;
+      transition: color 0.25s !important;
+    }
+    .nav-bcc:hover { color: #fff !important; }
+    .nav-bcc::after { display: initial !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 101; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.85); transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 99; background: rgba(17,26,31,0.98); backdrop-filter: blur(12px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .mobile-menu.open { display: flex; opacity: 1; }
+    .mobile-menu a {
+      color: #F0ECE4; text-decoration: none; font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px; font-weight: 400; letter-spacing: 0.02em;
+      transition: color 0.25s; opacity: 0; transform: translateY(12px);
+      animation: mobileMenuIn 0.4s ease forwards;
+    }
+    .mobile-menu a:hover { color: #A25632; }
+    @keyframes mobileMenuIn { to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 768px) {
+      nav { top: 0; padding: 18px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    /* ─── BCC FOOTER ─── */
+    footer { background: var(--atlantic-navy); border-top: 1px solid rgba(240,236,228,0.08); padding: 48px 8vw; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .footer-logo-wrap { flex: 0 0 auto; }
+    .footer-logo { height: 72px; filter: brightness(0.8); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+    .footer-copy { font-family: var(--font-body); font-size: 11px; letter-spacing: 0.12em; color: rgba(240,236,228,0.2); }
+    .footer-social { display: flex; gap: 16px; align-items: center; }
+    .footer-social a { display: flex; align-items: center; justify-content: center; color: rgba(240,236,228,0.35); transition: color 0.25s; text-decoration: none; }
+    .footer-social a:hover { color: #fff; }
+    .footer-social svg { width: 20px; height: 20px; fill: currentColor; }
+    .mobile-menu-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+    @media (max-width: 768px) {
+      footer { flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: 40px 24px; }
+      .footer-right { align-items: center; }
+      .footer-social { justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── BACK NAV ────────────────────────────────────── -->
+  <a href="index.html" class="back-nav">
+    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    Blue Claw Country
+  </a>
+
+  <!-- ─── HERO ────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Where the salt meets the pine</p>
+      <h1 class="hero-title">Where We<br><em>Grew Up</em></h1>
+      <p class="hero-subtitle">A fan-sourced music video &nbsp;·&nbsp; Calling all of New Jersey</p>
+      <a href="#submit" class="hero-cta">Submit Your Clip</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ─── PERSONAL INVITE VIDEO ───────────────────────── -->
+  <section class="invite-video">
+    <div class="invite-inner reveal">
+      <div class="invite-video-wrap">
+       <iframe src="https://www.youtube.com/embed/Xk4Z6zSkFrc" allowfullscreen></iframe>
+      </div>
+      <p class="invite-caption">"Let's make something together."</p>
+    </div>
+  </section>
+
+  <!-- ─── THE ASK ─────────────────────────────────────── -->
+  <section class="the-ask">
+    <div class="ask-inner">
+      <div class="ask-text-side reveal">
+        <p class="ask-eyebrow">The Idea</p>
+        <h2 class="ask-heading">We're making a music video. <em>You're in it.</em></h2>
+        <div class="ask-body">
+          <p>"Where We Grew Up" is a song about the places that made us who we are. The backyards, the boardwalks, the kitchen tables, the streets you knew by heart before you could drive on them.</p>
+          <p>We want to build the official music video entirely from your footage — real clips from real people, all from New Jersey. No actors. No sets. Just the places and people that feel like home.</p>
+          <p>If you grew up here, you're already part of this.</p>
+        </div>
+      </div>
+      <div class="ask-details reveal">
+        <h3>What to Send</h3>
+        <div class="detail-item">
+          <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div>
+          <div class="detail-text">
+            <h4>15–30 second video clips</h4>
+            <p>Shot on your phone is perfect. Horizontal preferred but we'll take anything.</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="detail-text">
+            <h4>New Jersey only</h4>
+            <p>The Shore, the Pine Barrens, your neighborhood, your town. If it's Jersey, it belongs.</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+          <div class="detail-text">
+            <h4>Show us what home looks like</h4>
+            <p>The places, the people, the moments. Whatever "where you grew up" means to you.</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg></div>
+          <div class="detail-text">
+            <h4>Deadline: April 6, 2026</h4>
+            <p>Video drops April 10 with the EP. We need time to edit, so get your clips in early.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INSPIRATION ─────────────────────────────────── -->
+  <section class="inspiration">
+    <div class="inspiration-inner">
+      <p class="inspiration-eyebrow reveal">Ideas to Get You Started</p>
+      <h2 class="inspiration-heading reveal">What does home look like?</h2>
+      <div class="idea-grid">
+        <div class="idea-card reveal">
+          <h4>The Street You Grew Up On</h4>
+          <p>A slow drive or walk down the block. The houses, the trees, the cracks in the sidewalk you memorized as a kid.</p>
+        </div>
+        <div class="idea-card reveal">
+          <h4>Your Family's Spot</h4>
+          <p>The diner. The pizza place. The beach badge line. The Sunday table. Wherever your people always ended up.</p>
+        </div>
+        <div class="idea-card reveal">
+          <h4>The Water</h4>
+          <p>The ocean, the bay, the lake, the creek behind your house. If it's water and it's Jersey, we want to see it.</p>
+        </div>
+        <div class="idea-card reveal">
+          <h4>The Boardwalk</h4>
+          <p>Rides, games, custard, the smell of funnel cake at 9pm. Wildwood, Seaside, Point Pleasant — all of it.</p>
+        </div>
+        <div class="idea-card reveal">
+          <h4>Your People</h4>
+          <p>The friends who've been there since day one. Your parents' backyard. Your kids doing the same things you did.</p>
+        </div>
+        <div class="idea-card reveal">
+          <h4>The Drive Home</h4>
+          <p>That moment on the Parkway, the bridge, the exit ramp when you know you're almost there. We all have one.</p>
+        </div>
+      </div>
+      <p class="inspiration-note reveal">These are just starting points. If it feels like home to you, it belongs in this video.</p>
+    </div>
+  </section>
+
+  <!-- ─── HOW TO SUBMIT ───────────────────────────────── -->
+  <section class="submit-section" id="submit">
+    <div class="submit-inner">
+      <p class="submit-eyebrow reveal">How to Submit</p>
+      <h2 class="submit-heading reveal">One step. That's it.</h2>
+      <p class="submit-sub reveal">Post your clip on TikTok or Instagram and tag us. We'll find it.</p>
+      <div class="submit-options">
+        <div class="submit-option reveal">
+          <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+          <h4>Tag @craigwhitakermusic</h4>
+          <p>Post your clip on TikTok or Instagram and tag <strong>@craigwhitakermusic</strong>. We'll see it and reach out if we want to use it.</p>
+          <a href="https://www.instagram.com/craigwhitakermusic/" target="_blank" rel="noopener noreferrer">Find us on Instagram →</a>
+        </div>
+        <div class="submit-option reveal">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <h4>Use #WhereWeGrewUpNJ</h4>
+          <p>Add <strong>#WhereWeGrewUpNJ</strong> to your caption so the whole community can find it — and so we don't miss it.</p>
+          <a href="https://www.tiktok.com/@craigwhitakermusic" target="_blank" rel="noopener noreferrer">Find us on TikTok →</a>
+        </div>
+      </div>
+      <p class="submit-hashtag reveal">#WhereWeGrewUpNJ</p>
+      <p class="submit-hashtag-note reveal">That's all. Post it, tag it, and you're in.</p>
+    </div>
+  </section>
+
+  <!-- ─── DEADLINE ────────────────────────────────────── -->
+  <section class="deadline">
+    <div class="deadline-inner reveal">
+      <p class="deadline-label">Submission Deadline</p>
+      <h2 class="deadline-date">April 6, 2026</h2>
+      <p class="deadline-note">The "Where We Grew Up" music video and EP drop April 10, 2026.<br>We need your clips by April 6 to make the final cut.</p>
+    </div>
+  </section>
+
+  <!-- ─── SIGNUP CTA ──────────────────────────────────── -->
+  <section class="signup-cta" id="join">
+    <div class="signup-inner reveal">
+      <p class="signup-eyebrow">#ClawsUp</p>
+      <h2 class="signup-heading">Become a Citizen of<br><em>Blue Claw Country</em></h2>
+      <p class="signup-body">Sign up to get the music, the stories, the shows — and a front-row seat to everything Blue Claw Country.</p>
+      <form class="email-form" action="https://blueclawcountry.us6.list-manage.com/subscribe/post?u=3e7d839b657154cc99d055732&amp;id=bd59a81765&amp;f_id=00cc34e1f0" method="post" onsubmit="handleSignup(event)">
+        <div class="form-row">
+          <input type="text" name="FNAME" placeholder="First Name" />
+          <input type="text" name="LNAME" placeholder="Last Name" />
+        </div>
+        <div class="form-row">
+          <input type="email" name="EMAIL" id="signup-email" placeholder="Email Address *" required />
+          <input type="tel" name="PHONE" placeholder="Phone Number" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="ADDRESS[addr1]" placeholder="Street Address" />
+          <input type="text" name="ADDRESS[city]" placeholder="City" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="ADDRESS[state]" placeholder="State" />
+          <input type="text" name="ADDRESS[zip]" placeholder="Zip Code" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="BIRTHDAY[month]" placeholder="Birthday Month (MM)" maxlength="2" />
+          <input type="text" name="BIRTHDAY[day]" placeholder="Birthday Day (DD)" maxlength="2" />
+        </div>
+        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+          <input type="text" name="b_3e7d839b657154cc99d055732_bd59a81765" tabindex="-1" value="" />
+        </div>
+        <button type="submit" class="form-submit">Sign Up</button>
+      </form>
+      <div id="signup-msg" style="display:none;margin-top:24px;">
+        <img src="cwSignature_transparent.png" alt="Craig Whitaker" style="width:120px;margin-bottom:12px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.2));mix-blend-mode:multiply;" />
+        <p style="font-family:var(--font-display);font-size:20px;font-style:italic;color:var(--atlantic-navy);">Thank you – see you in the sand!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ──────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo-wrap">
+      <a href="index.html"><img src="bclogo_transparent.png" alt="Blue Claw Country" class="footer-logo" /></a>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://www.tiktok.com/@craigwhitakermusic" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://www.instagram.com/craigwhitakermusic/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.facebook.com/craigwhitakermusic/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://open.spotify.com/artist/1JFVCPiRhEaAvVh1theEow?si=eBaf6gSQQPChOqYo025Acg" aria-label="Spotify" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+        <a href="https://music.apple.com/us/artist/craig-whitaker/280315639" aria-label="Apple Music" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 70.1 0 128.4 46.4 172.5 46.4 42.8 0 109.6-49 192.5-49 30.5 0 110.3 2.6 168.5 80.1zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/></svg></a>
+        <a href="https://music.amazon.com/artists/B0018A1VMC/craig-whitaker?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_oOt3agUiBcByno8lCtPEDBjub" aria-label="Amazon Music" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705c-.209.189-.512.201-.745.076-1.052-.872-1.238-1.276-1.814-2.106-1.734 1.767-2.962 2.297-5.209 2.297-2.661 0-4.731-1.641-4.731-4.925 0-2.565 1.391-4.309 3.37-5.164 1.715-.754 4.11-.891 5.942-1.095v-.41c0-.753.06-1.642-.383-2.294-.385-.579-1.124-.82-1.775-.82-1.205 0-2.277.618-2.54 1.897-.054.285-.261.567-.549.582l-3.061-.333c-.259-.056-.548-.266-.472-.66C5.57 2.245 8.642 1.2 11.398 1.2c1.407 0 3.245.374 4.353 1.44 1.407 1.312 1.273 3.064 1.273 4.972v4.497c0 1.352.561 1.948 1.089 2.677.186.261.226.573-.01.767l-2.959 2.242zm3.559 1.677c-2.677 1.95-6.558 2.987-9.902 2.987-4.682 0-8.898-1.731-12.088-4.614-.251-.226-.026-.535.276-.359 3.44 2.003 7.692 3.207 12.086 3.207 2.963 0 6.22-.614 9.217-1.887.452-.193.831.296.411.666zm1.18-1.348c-.342-.439-2.261-.207-3.124-.104-.262.031-.302-.196-.066-.361 1.529-1.074 4.039-.764 4.331-.404.293.361-.077 2.876-1.512 4.075-.221.186-.432.087-.333-.153.323-.806 1.046-2.614.704-3.053z"/></svg></a>
+      </div>
+      <p class="footer-copy">© 2026 Blue Claw Country</p>
+    </div>
+  </footer>
+
+  <script>
+    // ─── SCROLL REVEAL ────────────────────────────────────
+    var reveals = document.querySelectorAll('.observe');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(function(el) { revealObserver.observe(el); });
+  </script>
+</body>
+</html>
