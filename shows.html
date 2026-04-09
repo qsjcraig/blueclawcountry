@@ -625,7 +625,7 @@
             <p class="show-time">${show.time}</p>
             ${show.with ? `<p class="show-support">w/ ${show.with}</p>` : ''}
           </div>
-          <div>${show.free ? '' : `<a href="${show.ticketUrl}" class="${show.soldOut ? 'show-ticket sold-out' : 'show-ticket'}" ${show.ticketUrl !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+          <div>${(show.free || !show.ticketUrl) ? '' : `<a href="${show.ticketUrl}" class="${show.soldOut ? 'show-ticket sold-out' : 'show-ticket'}" target="_blank" rel="noopener noreferrer">
             ${show.soldOut ? 'Sold Out' : 'Tickets'}
           </a>`}</div>
         `;
