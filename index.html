@@ -709,7 +709,7 @@
             '<div class="show-date"><span class="show-month">' + s.month + '</span><span class="show-day">' + s.day + '</span><span class="show-year">' + (s.year||'2026') + '</span></div>' +
             '<div><p class="show-venue">' + s.venue + '</p><p class="show-location">' + s.location + '</p></div>' +
             '<div class="show-meta"><p class="show-time">' + s.time + '</p>' + (s.with ? '<p class="show-support">w/ ' + s.with + '</p>' : '') + '</div>' +
-            '<div>' + (s.free ? '' : '<a href="' + s.ticketUrl + '" class="show-ticket' + (s.soldOut?' sold-out':'') + '"' + (s.ticketUrl!=='#'?' target="_blank" rel="noopener noreferrer"':'') + '>' + (s.soldOut?'Sold Out':'Tickets') + '</a>') + '</div>' +
+            '<div>' + (s.free || !s.ticketUrl ? '' : '<a href="' + s.ticketUrl + '" class="show-ticket' + (s.soldOut?' sold-out':'') + '" target="_blank" rel="noopener noreferrer">' + (s.soldOut?'Sold Out':'Tickets') + '</a>') + '</div>' +
           '</div>';
         }).join('');
         list.querySelectorAll('.observe').forEach(function(el) {
