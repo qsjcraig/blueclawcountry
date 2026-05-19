@@ -80,7 +80,7 @@
     "time": "1PM",
     "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
