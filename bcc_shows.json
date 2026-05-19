@@ -154,5 +154,17 @@
     "with": "",
     "free": false,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "17",
+    "year": "2026",
+    "venue": "Boathouse",
+    "location": "Wildwood, NJ",
+    "time": "5PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": false,
+    "soldOut": false
   }
 ]
