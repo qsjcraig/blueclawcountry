@@ -178,5 +178,17 @@
     "with": "",
     "free": false,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "19",
+    "year": "2026",
+    "venue": "Crest Tavern",
+    "location": "Wildwood, NJ",
+    "time": "1PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": false,
+    "soldOut": false
   }
 ]
