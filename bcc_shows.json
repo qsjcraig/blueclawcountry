@@ -56,7 +56,7 @@
     "time": "6PM",
     "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
