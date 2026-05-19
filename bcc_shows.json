@@ -164,7 +164,7 @@
     "time": "5PM",
     "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
