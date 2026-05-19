@@ -116,7 +116,7 @@
     "time": "10AM",
     "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
