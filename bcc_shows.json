@@ -166,5 +166,17 @@
     "with": "",
     "free": false,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "18",
+    "year": "2026",
+    "venue": "Elaine's",
+    "location": "Cape May, NJ",
+    "time": "5PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": false,
+    "soldOut": false
   }
 ]
