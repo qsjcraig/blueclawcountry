@@ -250,5 +250,17 @@
     "with": "",
     "free": true,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "4",
+    "year": "2026",
+    "venue": "The Rook",
+    "location": "Wildwood, NJ",
+    "time": "6PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
   }
 ]
