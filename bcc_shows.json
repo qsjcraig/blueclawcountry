@@ -226,5 +226,17 @@
     "with": "",
     "free": true,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "2",
+    "year": "2026",
+    "venue": "Urie's",
+    "location": "Wildwood, NJ",
+    "time": "6PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
   }
 ]
