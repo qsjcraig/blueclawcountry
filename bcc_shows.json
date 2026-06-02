@@ -262,5 +262,17 @@
     "with": "",
     "free": true,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "5",
+    "year": "2026",
+    "venue": "The Surfing Pig",
+    "location": "Wildwood, NJ",
+    "time": "3PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
   }
 ]
