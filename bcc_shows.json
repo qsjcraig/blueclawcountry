@@ -53,10 +53,10 @@
     "year": "2026",
     "venue": "The Rook",
     "location": "Wildwood, NJ",
-    "time": "5PM",
-    "ticketUrl": "",
+    "time": "6PM",
+    "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
@@ -65,10 +65,10 @@
     "year": "2026",
     "venue": "Elaine's",
     "location": "Cape May, NJ",
-    "time": "12PM",
-    "ticketUrl": "",
+    "time": "5PM",
+    "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
@@ -77,10 +77,10 @@
     "year": "2026",
     "venue": "Crest Tavern",
     "location": "Wildwood, NJ",
-    "time": "12PM",
-    "ticketUrl": "",
+    "time": "1PM",
+    "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
@@ -113,10 +113,10 @@
     "year": "2026",
     "venue": "Capt'n Jack's",
     "location": "Wildwood, NJ",
-    "time": "9AM",
-    "ticketUrl": "",
+    "time": "10AM",
+    "ticketUrl": "#",
     "with": "",
-    "free": false,
+    "free": true,
     "soldOut": false
   },
   {
@@ -153,6 +153,126 @@
     "ticketUrl": "",
     "with": "",
     "free": false,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "17",
+    "year": "2026",
+    "venue": "Boathouse",
+    "location": "Wildwood, NJ",
+    "time": "5PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "18",
+    "year": "2026",
+    "venue": "Elaine's",
+    "location": "Cape May, NJ",
+    "time": "5PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "19",
+    "year": "2026",
+    "venue": "Crest Tavern",
+    "location": "Wildwood, NJ",
+    "time": "1PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Aug",
+    "day": "14",
+    "year": "2026",
+    "venue": "Urie's",
+    "location": "Wildwood, NJ",
+    "time": "5PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Aug",
+    "day": "15",
+    "year": "2026",
+    "venue": "The Surfing Pig",
+    "location": "Wildwood, NJ",
+    "time": "3PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Aug",
+    "day": "16",
+    "year": "2026",
+    "venue": "Splash Zone",
+    "location": "Wildwood, NJ",
+    "time": "1PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "2",
+    "year": "2026",
+    "venue": "Urie's",
+    "location": "Wildwood, NJ",
+    "time": "6PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "3",
+    "year": "2026",
+    "venue": "Crest Tavern",
+    "location": "Wildwood, NJ",
+    "time": "6PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "4",
+    "year": "2026",
+    "venue": "The Rook",
+    "location": "Wildwood, NJ",
+    "time": "6PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "5",
+    "year": "2026",
+    "venue": "The Surfing Pig",
+    "location": "Wildwood, NJ",
+    "time": "3PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
     "soldOut": false
   }
 ]
