@@ -618,7 +618,7 @@
       if (!block) return;
       block.style.display = 'block';
 
-      document.getElementById('feature-eyebrow').textContent = f.artistName ? f.artistName + ' performing at' : 'Performing at';
+      document.getElementById('feature-eyebrow').textContent = '';
       if (f.festivalLogo) {
         document.getElementById('feature-festival').innerHTML = `<img src="${f.festivalLogo}" alt="${f.festivalName}" style="max-width:500px;width:100%;height:auto;display:block;margin:0 auto;" />`;
       } else {
