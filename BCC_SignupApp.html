@@ -3,30 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BCC Signup">
 <title>Blue Claw Country — Join the List</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:   #1C2D38;
-    --blue:   #3D6273;
-    --pine:   #2D4A35;
-    --sand:   #C9A96E;
-    --sand2:  #EDE8DF;
-    --cream:  #F5F1EB;
-    --white:  #FFFFFF;
-    --rust:   #B85C38;
-    --text:   #1C2D38;
-    --muted:  #6B7F89;
+    --navy:  #1C2D38;
+    --blue:  #3D6273;
+    --pine:  #2D4A35;
+    --sand:  #C9A96E;
+    --sand2: #EDE8DF;
+    --cream: #F5F1EB;
+    --white: #FFFFFF;
+    --rust:  #B85C38;
+    --text:  #1C2D38;
+    --muted: #6B7F89;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
   html, body {
     height: 100%;
-    font-family: 'DM Sans', sans-serif;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     background: var(--navy);
     overflow: hidden;
   }
+
+  .serif { font-family: Georgia, 'Times New Roman', serif; }
+  .mono  { font-family: 'Courier New', Courier, monospace; }
 
   /* ── SCREENS ── */
   .screen {
@@ -39,37 +44,63 @@
     padding: 40px 48px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.45s ease;
+    transition: opacity 0.35s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .screen.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .screen.active { opacity: 1; pointer-events: all; }
 
-  /* ── BACKGROUND TEXTURE ── */
   .screen::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 20% 80%, rgba(61,98,115,0.35) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(45,74,53,0.25) 0%, transparent 55%);
+    background: radial-gradient(ellipse at 20% 80%, rgba(61,98,115,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(45,74,53,0.2) 0%, transparent 55%);
     pointer-events: none;
   }
 
-  /* ── SIGNUP SCREEN ── */
-  #screen-signup {
+  /* ── EVENT SETUP SCREEN ── */
+  #screen-event {
     background: var(--navy);
     gap: 0;
   }
 
+  .event-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 40px 44px;
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+  }
+
+  .event-card h2 {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .event-card .event-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* ── SIGNUP SCREEN ── */
+  #screen-signup { background: var(--navy); gap: 0; }
+
   .brand-lockup {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 28px;
     position: relative;
     z-index: 1;
   }
   .brand-lockup .eyebrow {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 11px;
     letter-spacing: 0.2em;
     color: var(--sand);
@@ -77,17 +108,14 @@
     margin-bottom: 10px;
   }
   .brand-lockup h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: Georgia, serif;
     font-size: 52px;
-    font-weight: 900;
+    font-weight: bold;
     color: var(--white);
     line-height: 1;
     letter-spacing: -0.01em;
   }
-  .brand-lockup h1 em {
-    font-style: italic;
-    color: var(--sand);
-  }
+  .brand-lockup h1 em { font-style: italic; color: var(--sand); }
   .brand-lockup .sub {
     font-size: 16px;
     color: var(--sand2);
@@ -96,30 +124,45 @@
     letter-spacing: 0.02em;
   }
 
-  /* divider */
-  .divider {
-    width: 60px;
-    height: 2px;
-    background: var(--sand);
-    margin: 0 auto 32px;
+  .event-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,169,110,0.12);
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--sand);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.06em;
+    margin-top: 10px;
+    cursor: pointer;
     position: relative;
     z-index: 1;
   }
 
-  /* form card */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--sand);
+    margin: 0 auto 24px;
+    position: relative;
+    z-index: 1;
+  }
+
   .form-card {
     background: var(--cream);
     border-radius: 20px;
-    padding: 40px 44px;
+    padding: 36px 44px;
     width: 100%;
     max-width: 680px;
     position: relative;
     z-index: 1;
     box-shadow: 0 24px 80px rgba(0,0,0,0.4);
   }
-
   .form-card h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: Georgia, serif;
     font-size: 26px;
     color: var(--navy);
     margin-bottom: 6px;
@@ -127,24 +170,21 @@
   .form-card .form-sub {
     font-size: 14px;
     color: var(--muted);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     line-height: 1.5;
   }
 
+  /* ── FIELDS ── */
   .field-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 14px;
+    margin-bottom: 14px;
   }
-  .field-row.single { grid-template-columns: 1fr; }
-  .field-row.triple { grid-template-columns: 1fr 1fr 80px; }
+  .field-row.single   { grid-template-columns: 1fr; }
+  .field-row.triple   { grid-template-columns: 1fr 1fr 80px; }
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .field { display: flex; flex-direction: column; gap: 5px; }
   .field label {
     font-size: 11px;
     font-weight: 500;
@@ -152,40 +192,89 @@
     text-transform: uppercase;
     color: var(--muted);
   }
-  .field input {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
+  .field input, .field select, .field textarea {
+    font-family: -apple-system, sans-serif;
+    font-size: 17px;
     color: var(--navy);
     background: var(--white);
     border: 1.5px solid #D5CFC5;
     border-radius: 10px;
-    padding: 14px 16px;
+    padding: 13px 14px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
     -webkit-appearance: none;
+    width: 100%;
   }
-  .field input:focus {
+  .field textarea {
+    resize: none;
+    min-height: 80px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .field select { background-image: none; }
+  .field input:focus, .field select:focus, .field textarea:focus {
     border-color: var(--blue);
     box-shadow: 0 0 0 3px rgba(61,98,115,0.15);
   }
-  .field input.error {
-    border-color: var(--rust);
-    box-shadow: 0 0 0 3px rgba(184,92,56,0.15);
-  }
-  .field .err-msg {
-    font-size: 12px;
-    color: var(--rust);
-    display: none;
-  }
+  .field input.error { border-color: var(--rust); box-shadow: 0 0 0 3px rgba(184,92,56,0.15); }
+  .field .err-msg { font-size: 12px; color: var(--rust); display: none; }
   .field.has-error .err-msg { display: block; }
 
+  /* checkboxes */
+  .check-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+  .check-group-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--white);
+    border: 1.5px solid #D5CFC5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .check-item.checked {
+    border-color: var(--navy);
+    background: rgba(28,45,56,0.05);
+  }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D5CFC5;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+    font-size: 13px;
+    color: transparent;
+  }
+  .check-item.checked .check-box {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+  }
+  .check-label { font-size: 13px; color: var(--text); line-height: 1.3; }
+
+  /* submit */
   .submit-btn {
     width: 100%;
-    margin-top: 24px;
+    margin-top: 20px;
     padding: 18px;
     background: var(--navy);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: -apple-system, sans-serif;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -196,13 +285,28 @@
     transition: background 0.2s, transform 0.1s;
     -webkit-appearance: none;
   }
-  .submit-btn:active { background: var(--blue); transform: scale(0.98); }
+  .submit-btn.pine { background: var(--pine); }
+  .submit-btn:active { opacity: 0.85; transform: scale(0.98); }
+
+  .secondary-btn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+    background: transparent;
+    color: var(--muted);
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    border: 1.5px solid #D5CFC5;
+    border-radius: 12px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
 
   .opt-in {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin-top: 16px;
+    margin-top: 14px;
   }
   .opt-in input[type="checkbox"] {
     width: 20px;
@@ -212,19 +316,15 @@
     margin-top: 2px;
     cursor: pointer;
   }
-  .opt-in label {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-    cursor: pointer;
-  }
+  .opt-in label { font-size: 12px; color: var(--muted); line-height: 1.5; cursor: pointer; }
 
   /* counter badge */
   .counter-badge {
     position: absolute;
-    top: 28px;
-    right: 32px;
-    z-index: 10;
+    top: env(safe-area-inset-top, 24px);
+    top: calc(env(safe-area-inset-top, 0px) + 24px);
+    right: 28px;
+    z-index: 50;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(201,169,110,0.3);
     border-radius: 100px;
@@ -235,7 +335,7 @@
     cursor: pointer;
   }
   .counter-badge .count-num {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 18px;
     font-weight: 500;
     color: var(--sand);
@@ -248,14 +348,12 @@
   }
 
   /* ── THANK YOU SCREEN ── */
-  #screen-thanks {
-    background: var(--pine);
-    gap: 0;
-  }
+  #screen-thanks { background: var(--pine); gap: 0; }
   #screen-thanks::before {
     background: radial-gradient(ellipse at 30% 70%, rgba(201,169,110,0.2) 0%, transparent 60%),
                 radial-gradient(ellipse at 75% 25%, rgba(28,45,56,0.4) 0%, transparent 55%);
   }
+
   .thanks-icon {
     font-size: 72px;
     margin-bottom: 20px;
@@ -268,19 +366,16 @@
     to   { transform: scale(1);   opacity: 1; }
   }
   .thanks-title {
-    font-family: 'Playfair Display', serif;
+    font-family: Georgia, serif;
     font-size: 54px;
-    font-weight: 900;
+    font-weight: bold;
     color: var(--white);
     margin-bottom: 12px;
     text-align: center;
     position: relative;
     z-index: 1;
   }
-  .thanks-name {
-    color: var(--sand);
-    font-style: italic;
-  }
+  .thanks-name { color: var(--sand); font-style: italic; }
   .thanks-body {
     font-size: 20px;
     color: rgba(237,232,223,0.85);
@@ -293,7 +388,7 @@
     margin-bottom: 28px;
   }
   .handle-tag {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 15px;
     color: var(--sand);
     letter-spacing: 0.05em;
@@ -306,17 +401,107 @@
     margin-bottom: 32px;
   }
   .reset-countdown {
-    font-family: 'DM Mono', monospace;
+    font-family: 'Courier New', monospace;
     font-size: 13px;
     color: rgba(237,232,223,0.4);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     position: relative;
     z-index: 1;
+    margin-bottom: 24px;
   }
-  .reset-countdown span {
-    color: rgba(237,232,223,0.7);
-    font-weight: 500;
+  .reset-countdown span { color: rgba(237,232,223,0.7); font-weight: 500; }
+
+  .staff-btn {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 12px;
+    color: rgba(237,232,223,0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* ── PW INTELLIGENCE SCREEN ── */
+  #screen-intel {
+    background: #1A2A33;
+    gap: 0;
+    justify-content: flex-start;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 24px);
+  }
+  #screen-intel::before {
+    background: radial-gradient(ellipse at 20% 90%, rgba(45,74,53,0.3) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 15%, rgba(201,169,110,0.1) 0%, transparent 50%);
+  }
+
+  .intel-header {
+    width: 100%;
+    max-width: 680px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .intel-header-left h2 {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .intel-header-left p {
+    font-size: 12px;
+    color: rgba(201,169,110,0.7);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.06em;
+  }
+  .intel-skip {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(237,232,223,0.4);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: -apple-system, sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .intel-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 680px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - 140px);
+  }
+
+  .intel-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #D5CFC5;
+  }
+  .intel-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .intel-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 14px;
+    font-family: 'Courier New', monospace;
   }
 
   /* ── ADMIN OVERLAY ── */
@@ -328,17 +513,17 @@
     display: none;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 32px;
   }
   #admin-overlay.open { display: flex; }
 
   .admin-card {
     background: var(--cream);
     border-radius: 20px;
-    padding: 36px 40px;
+    padding: 32px 36px;
     width: 100%;
     max-width: 700px;
-    max-height: 80vh;
+    max-height: 85vh;
     overflow-y: auto;
     position: relative;
   }
@@ -348,107 +533,131 @@
     justify-content: space-between;
     margin-bottom: 20px;
   }
-  .admin-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--navy);
-  }
-  .admin-close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 4px 8px;
-  }
-  .admin-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .stat-box {
+  .admin-header h3 { font-family: Georgia, serif; font-size: 22px; color: var(--navy); }
+  .admin-close { background: none; border: none; font-size: 24px; color: var(--muted); cursor: pointer; padding: 4px 8px; }
+
+  .admin-event-info {
     background: var(--navy);
     border-radius: 12px;
-    padding: 16px 20px;
-    color: var(--white);
-  }
-  .stat-box .stat-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 36px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13px;
     color: var(--sand);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
   }
-  .stat-box .stat-lbl {
-    font-size: 12px;
-    color: rgba(237,232,223,0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 2px;
+
+  .admin-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
   }
-  .admin-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
+  .stat-box { background: var(--navy); border-radius: 12px; padding: 14px 18px; color: var(--white); }
+  .stat-box .stat-num { font-family: 'Courier New', monospace; font-size: 30px; color: var(--sand); }
+  .stat-box .stat-lbl { font-size: 11px; color: rgba(237,232,223,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+  .admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
   .admin-btn {
-    padding: 12px 20px;
+    padding: 11px 18px;
     border-radius: 10px;
     border: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: -apple-system, sans-serif;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
   }
   .admin-btn.primary { background: var(--navy); color: var(--white); }
   .admin-btn.danger  { background: #FDE8E0; color: var(--rust); }
-  .entries-list {
-    border-top: 1px solid #D5CFC5;
-    padding-top: 16px;
-  }
+  .admin-btn.reset   { background: #E8F0EB; color: var(--pine); }
+
+  .entries-list { border-top: 1px solid #D5CFC5; padding-top: 14px; }
   .entry-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #EDE8DF;
     font-size: 13px;
     color: var(--navy);
   }
   .entry-row:last-child { border-bottom: none; }
-  .entry-name { font-weight: 500; }
-  .entry-email { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; }
-  .entry-zip { color: var(--muted); }
-
-  /* no-entries */
-  .no-entries {
-    text-align: center;
-    color: var(--muted);
-    padding: 20px 0;
-    font-size: 15px;
+  .entry-name { font-weight: 600; font-size: 14px; }
+  .entry-email { color: var(--muted); font-family: 'Courier New', monospace; font-size: 12px; margin-top: 2px; }
+  .entry-meta { color: var(--muted); font-size: 11px; margin-top: 4px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .entry-signals { margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .signal-tag {
+    font-size: 11px;
+    background: rgba(28,45,56,0.08);
+    color: var(--navy);
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-family: 'Courier New', monospace;
   }
+  .entry-quote { margin-top: 6px; font-style: italic; color: var(--blue); font-size: 13px; }
+  .no-entries { text-align: center; color: var(--muted); padding: 20px 0; font-size: 15px; }
 </style>
 </head>
 <body>
 
 <!-- COUNTER BADGE -->
-<div class="counter-badge" onclick="openAdmin()" title="View submissions">
+<div class="counter-badge" onclick="openAdmin()">
   <span class="count-num" id="badge-count">0</span>
   <span class="count-label">Signed Up</span>
 </div>
 
-<!-- SIGNUP SCREEN -->
-<div class="screen active" id="screen-signup">
+<!-- ══ EVENT SETUP SCREEN ══ -->
+<div class="screen active" id="screen-event">
+  <div class="event-card">
+    <h2 class="serif">Tonight's show</h2>
+    <p class="event-sub">Set the event once. Every signup tonight gets stamped automatically.</p>
+
+    <div class="field-row single" style="margin-bottom:14px;">
+      <div class="field">
+        <label>Venue / Event Name</label>
+        <input type="text" id="ev-venue" placeholder="e.g. King's Road Brewing" autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="field-row" style="margin-bottom:14px;">
+      <div class="field">
+        <label>City</label>
+        <input type="text" id="ev-city" placeholder="Westville" autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+      <div class="field">
+        <label>Date</label>
+        <input type="date" id="ev-date">
+      </div>
+    </div>
+
+    <div class="field-row single" style="margin-bottom:0;">
+      <div class="field">
+        <label>Show Type</label>
+        <select id="ev-type">
+          <option value="">Select type...</option>
+          <option>Solo Acoustic</option>
+          <option>Full Band</option>
+          <option>Festival</option>
+          <option>Private Event</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="submit-btn" style="margin-top:24px;" onclick="saveEvent()">Start the Night</button>
+  </div>
+</div>
+
+<!-- ══ SIGNUP SCREEN ══ -->
+<div class="screen" id="screen-signup">
   <div class="brand-lockup">
     <p class="eyebrow">Craig Whitaker</p>
-    <h1>Blue <em>Claw</em> Country</h1>
+    <h1 class="serif">Blue <em>Claw</em> Country</h1>
     <p class="sub">Join the Citizens of Blue Claw Country</p>
+    <div class="event-pill" onclick="openAdmin()" id="event-pill">📍 Loading...</div>
   </div>
   <div class="divider"></div>
 
   <div class="form-card">
-    <h2>Get on the list. #ClawsUp</h2>
+    <h2 class="serif">Get on the list. #ClawsUp</h2>
     <p class="form-sub">Show announcements, new music, and what's happening on the Shore — straight to your inbox.</p>
 
     <div class="field-row">
@@ -457,7 +666,7 @@
         <input type="text" id="fname" placeholder="First" autocomplete="off" autocorrect="off" spellcheck="false">
         <span class="err-msg">Required</span>
       </div>
-      <div class="field" id="field-lname">
+      <div class="field">
         <label>Last Name</label>
         <input type="text" id="lname" placeholder="Last" autocomplete="off" autocorrect="off" spellcheck="false">
       </div>
@@ -472,26 +681,26 @@
     </div>
 
     <div class="field-row">
-      <div class="field" id="field-street">
+      <div class="field">
         <label>Street Address</label>
         <input type="text" id="street" placeholder="123 Main St" autocomplete="off" autocorrect="off" spellcheck="false">
       </div>
-      <div class="field" id="field-city">
+      <div class="field">
         <label>City</label>
         <input type="text" id="city" placeholder="City" autocomplete="off" autocorrect="off" spellcheck="false">
       </div>
     </div>
 
     <div class="field-row triple">
-      <div class="field" id="field-state">
+      <div class="field">
         <label>State</label>
         <input type="text" id="state" placeholder="NJ" maxlength="2" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
       </div>
-      <div class="field" id="field-zip">
+      <div class="field">
         <label>Zip Code</label>
         <input type="text" id="zip" placeholder="08260" maxlength="10" autocomplete="off" autocorrect="off" spellcheck="false" inputmode="numeric">
       </div>
-      <div style="grid-column: span 1"></div>
+      <div></div>
     </div>
 
     <div class="opt-in">
@@ -503,34 +712,154 @@
   </div>
 </div>
 
-<!-- THANK YOU SCREEN -->
+<!-- ══ THANK YOU SCREEN ══ -->
 <div class="screen" id="screen-thanks">
   <div class="thanks-icon">🤙</div>
-  <h1 class="thanks-title">You're in, <span class="thanks-name" id="thanks-name">friend</span>.</h1>
+  <h1 class="thanks-title serif">You're in, <span class="thanks-name" id="thanks-name">friend</span>.</h1>
   <p class="thanks-body">Welcome to the Citizens of Blue Claw Country. We'll see you at the next show.</p>
   <div class="handle-tag">@craigwhitakermusic</div>
   <p class="reset-countdown">Next person in <span id="countdown-num">8</span>s…</p>
+  <button class="staff-btn" onclick="openIntel()">PW Intel ↓</button>
 </div>
 
-<!-- ADMIN OVERLAY -->
+<!-- ══ PW INTELLIGENCE SCREEN ══ -->
+<div class="screen" id="screen-intel">
+  <div class="intel-header">
+    <div class="intel-header-left">
+      <h2>PW Intelligence</h2>
+      <p id="intel-citizen-name">Citizen</p>
+    </div>
+    <button class="intel-skip" onclick="skipIntel()">Skip → Done</button>
+  </div>
+
+  <div class="intel-card">
+
+    <!-- SOURCE -->
+    <div class="intel-section">
+      <div class="intel-section-title">Source</div>
+      <div class="field-row" style="margin-bottom:12px;">
+        <div class="field">
+          <label>Source Type</label>
+          <select id="i-source-type">
+            <option value="">Select...</option>
+            <option>Live Event</option>
+            <option>Radio</option>
+            <option>Social Media</option>
+            <option>Friend</option>
+            <option>Brewery</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Source Detail</label>
+          <input type="text" id="i-source-detail" placeholder="e.g. BCMF, Instagram..." autocomplete="off" autocorrect="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+
+    <!-- SHORE CONNECTION -->
+    <div class="intel-section">
+      <div class="intel-section-title">Shore Connection</div>
+      <div class="field-row" style="margin-bottom:12px;">
+        <div class="field">
+          <label>Shore Region</label>
+          <select id="i-shore-region">
+            <option value="">Select...</option>
+            <option>Wildwood Area</option>
+            <option>Cape May Area</option>
+            <option>Sea Isle Area</option>
+            <option>Ocean City Area</option>
+            <option>LBI Area</option>
+            <option>Other</option>
+            <option>No Shore Connection</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Shore Detail</label>
+          <input type="text" id="i-shore-detail" placeholder="e.g. Has a place in N. Wildwood..." autocomplete="off" autocorrect="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+
+    <!-- RELATIONSHIP SIGNALS -->
+    <div class="intel-section">
+      <div class="intel-section-title">Relationship Signals</div>
+      <div class="check-grid" id="signals-grid">
+        <div class="check-item" data-signal="wwgu">
+          <input type="checkbox" id="sig-wwgu"><div class="check-box">✓</div>
+          <span class="check-label">WWGU Mentioned</span>
+        </div>
+        <div class="check-item" data-signal="beer">
+          <input type="checkbox" id="sig-beer"><div class="check-box">✓</div>
+          <span class="check-label">Beer Mentioned</span>
+        </div>
+        <div class="check-item" data-signal="repeat">
+          <input type="checkbox" id="sig-repeat"><div class="check-box">✓</div>
+          <span class="check-label">Repeat Attendee</span>
+        </div>
+        <div class="check-item" data-signal="came-for-craig">
+          <input type="checkbox" id="sig-came-for-craig"><div class="check-box">✓</div>
+          <span class="check-label">Came For Craig</span>
+        </div>
+        <div class="check-item" data-signal="met-craig">
+          <input type="checkbox" id="sig-met-craig"><div class="check-box">✓</div>
+          <span class="check-label">Met Craig</span>
+        </div>
+        <div class="check-item" data-signal="brought-friends">
+          <input type="checkbox" id="sig-brought-friends"><div class="check-box">✓</div>
+          <span class="check-label">Brought Friends</span>
+        </div>
+        <div class="check-item" data-signal="requested-original">
+          <input type="checkbox" id="sig-requested-original"><div class="check-box">✓</div>
+          <span class="check-label">Requested Original Music</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="intel-section">
+      <div class="intel-section-title">Story</div>
+      <div class="field single" style="margin-bottom:12px;">
+        <label>Quote</label>
+        <textarea id="i-quote" placeholder="Something they said, in their words..." autocorrect="off" spellcheck="false"></textarea>
+      </div>
+      <div class="field single">
+        <label>Notes</label>
+        <textarea id="i-notes" placeholder="Context, backstory, anything worth remembering..." autocorrect="off" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <button class="submit-btn pine" onclick="saveIntel()">Save & Done</button>
+    <button class="secondary-btn" onclick="skipIntel()">Skip without saving intel</button>
+
+  </div>
+</div>
+
+<!-- ══ ADMIN OVERLAY ══ -->
 <div id="admin-overlay">
   <div class="admin-card">
     <div class="admin-header">
-      <h3>Submissions</h3>
+      <h3 class="serif">Submissions</h3>
       <button class="admin-close" onclick="closeAdmin()">✕</button>
     </div>
+    <div class="admin-event-info" id="admin-event-info">No event set</div>
     <div class="admin-stats">
       <div class="stat-box">
         <div class="stat-num" id="admin-count">0</div>
-        <div class="stat-lbl">Total Signups</div>
+        <div class="stat-lbl">Total</div>
       </div>
       <div class="stat-box">
         <div class="stat-num" id="admin-session">0</div>
-        <div class="stat-lbl">This Session</div>
+        <div class="stat-lbl">Tonight</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="admin-intel">0</div>
+        <div class="stat-lbl">With Intel</div>
       </div>
     </div>
     <div class="admin-actions">
-      <button class="admin-btn primary" onclick="exportCSV()">⬇ Export CSV for Mailchimp</button>
+      <button class="admin-btn primary" onclick="exportCSV()">⬇ Export CSV</button>
+      <button class="admin-btn reset" onclick="changeEvent()">Change Event</button>
       <button class="admin-btn danger" onclick="clearAll()">Clear All Data</button>
     </div>
     <div class="entries-list" id="entries-list"></div>
@@ -538,9 +867,45 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'bcc_signups';
-let sessionCount = 0;
-let countdownTimer = null;
+const STORAGE_KEY   = 'bcc_signups_v2';
+const EVENT_KEY     = 'bcc_current_event';
+let sessionCount    = 0;
+let intelCount      = 0;
+let countdownTimer  = null;
+let pendingEntryIdx = null;
+
+// ── EVENT ──
+function getTodayISO() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function getEvent() {
+  try { return JSON.parse(localStorage.getItem(EVENT_KEY) || 'null'); } catch(e) { return null; }
+}
+function saveEvent() {
+  const venue = document.getElementById('ev-venue').value.trim();
+  const city  = document.getElementById('ev-city').value.trim();
+  const date  = document.getElementById('ev-date').value || getTodayISO();
+  const type  = document.getElementById('ev-type').value;
+  if (!venue) { document.getElementById('ev-venue').focus(); return; }
+  const ev = { venue, city, date, type };
+  localStorage.setItem(EVENT_KEY, JSON.stringify(ev));
+  updateEventUI();
+  showScreen('screen-signup');
+}
+function changeEvent() {
+  closeAdmin();
+  localStorage.removeItem(EVENT_KEY);
+  showScreen('screen-event');
+}
+function updateEventUI() {
+  const ev = getEvent();
+  if (!ev) return;
+  const label = ev.venue + (ev.city ? ' · ' + ev.city : '') + ' · ' + ev.date;
+  const pill = document.getElementById('event-pill');
+  if (pill) pill.textContent = '📍 ' + label;
+}
 
 // ── DATA ──
 function getEntries() {
@@ -552,39 +917,33 @@ function saveEntries(arr) {
 
 // ── UI ──
 function updateBadge() {
-  const n = getEntries().length;
-  document.getElementById('badge-count').textContent = n;
+  const entries = getEntries();
+  document.getElementById('badge-count').textContent = entries.length;
+  intelCount = entries.filter(e => e.hasIntel).length;
 }
-
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// ── VALIDATION ──
+// ── VALIDATE ──
 function validate() {
-  let ok = true;
   const fname = document.getElementById('fname').value.trim();
   const email = document.getElementById('email').value.trim();
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   setError('field-fname', 'fname', !fname);
   setError('field-email', 'email', !email || !emailRe.test(email));
-
-  if (!fname || !email || !emailRe.test(email)) ok = false;
-  return ok;
+  return fname && email && emailRe.test(email);
 }
 function setError(fieldId, inputId, hasErr) {
-  const f = document.getElementById(fieldId);
-  const i = document.getElementById(inputId);
-  if (hasErr) { f.classList.add('has-error'); i.classList.add('error'); }
-  else         { f.classList.remove('has-error'); i.classList.remove('error'); }
+  document.getElementById(fieldId).classList.toggle('has-error', hasErr);
+  document.getElementById(inputId).classList.toggle('error', hasErr);
 }
 
 // ── SUBMIT ──
 function handleSubmit() {
   if (!validate()) return;
-
+  const ev = getEvent();
   const entry = {
     ts:       new Date().toISOString(),
     fname:    document.getElementById('fname').value.trim(),
@@ -595,21 +954,24 @@ function handleSubmit() {
     state:    document.getElementById('state').value.trim().toUpperCase(),
     zip:      document.getElementById('zip').value.trim(),
     optin:    document.getElementById('optin').checked,
+    event:    ev ? ev.venue : '',
+    eventCity:ev ? ev.city : '',
+    eventDate:ev ? ev.date : getTodayISO(),
+    eventType:ev ? ev.type : '',
+    hasIntel: false,
   };
-
   const entries = getEntries();
   entries.push(entry);
   saveEntries(entries);
+  pendingEntryIdx = entries.length - 1;
   sessionCount++;
   updateBadge();
-
-  // show thanks
   document.getElementById('thanks-name').textContent = entry.fname || 'friend';
   showScreen('screen-thanks');
   startCountdown(8);
 }
 
-// ── COUNTDOWN & RESET ──
+// ── COUNTDOWN ──
 function startCountdown(secs) {
   if (countdownTimer) clearInterval(countdownTimer);
   let remaining = secs;
@@ -624,77 +986,156 @@ function startCountdown(secs) {
     }
   }, 1000);
 }
-
 function resetForm() {
   ['fname','lname','email','street','city','state','zip'].forEach(id => {
     document.getElementById(id).value = '';
   });
   document.getElementById('optin').checked = true;
-  ['field-fname','field-email'].forEach(id => {
-    document.getElementById(id).classList.remove('has-error');
-  });
-  ['fname','email'].forEach(id => {
-    document.getElementById(id).classList.remove('error');
-  });
+  setError('field-fname','fname',false);
+  setError('field-email','email',false);
 }
+
+// ── INTEL ──
+function openIntel() {
+  if (countdownTimer) clearInterval(countdownTimer);
+  const entries = getEntries();
+  const entry = entries[pendingEntryIdx];
+  document.getElementById('intel-citizen-name').textContent =
+    entry ? (entry.fname + (entry.lname ? ' ' + entry.lname : '')) : 'Citizen';
+  resetIntel();
+  showScreen('screen-intel');
+}
+
+function resetIntel() {
+  document.getElementById('i-source-type').value = '';
+  document.getElementById('i-source-detail').value = '';
+  document.getElementById('i-shore-region').value = '';
+  document.getElementById('i-shore-detail').value = '';
+  document.getElementById('i-quote').value = '';
+  document.getElementById('i-notes').value = '';
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+}
+
+function saveIntel() {
+  if (pendingEntryIdx === null) { showScreen('screen-signup'); return; }
+  const signals = [];
+  document.querySelectorAll('.check-item.checked').forEach(el => signals.push(el.dataset.signal));
+  const intel = {
+    sourceType:   document.getElementById('i-source-type').value,
+    sourceDetail: document.getElementById('i-source-detail').value.trim(),
+    shoreRegion:  document.getElementById('i-shore-region').value,
+    shoreDetail:  document.getElementById('i-shore-detail').value.trim(),
+    signals,
+    quote:        document.getElementById('i-quote').value.trim(),
+    notes:        document.getElementById('i-notes').value.trim(),
+  };
+  const entries = getEntries();
+  if (entries[pendingEntryIdx]) {
+    entries[pendingEntryIdx].intel = intel;
+    entries[pendingEntryIdx].hasIntel = true;
+    saveEntries(entries);
+  }
+  pendingEntryIdx = null;
+  updateBadge();
+  resetForm();
+  showScreen('screen-signup');
+}
+
+function skipIntel() {
+  if (countdownTimer) clearInterval(countdownTimer);
+  pendingEntryIdx = null;
+  resetForm();
+  showScreen('screen-signup');
+}
+
+// toggle checkboxes
+document.getElementById('signals-grid').addEventListener('click', e => {
+  const item = e.target.closest('.check-item');
+  if (!item) return;
+  item.classList.toggle('checked');
+});
 
 // ── ADMIN ──
 function openAdmin() {
   const entries = getEntries();
-  document.getElementById('admin-count').textContent = entries.length;
+  const ev = getEvent();
+  document.getElementById('admin-count').textContent   = entries.length;
   document.getElementById('admin-session').textContent = sessionCount;
+  document.getElementById('admin-intel').textContent   = entries.filter(e=>e.hasIntel).length;
+  document.getElementById('admin-event-info').textContent =
+    ev ? (ev.venue + (ev.city ? ' · ' + ev.city : '') + ' · ' + ev.date + (ev.type ? ' · ' + ev.type : '')) : 'No event set';
 
   const list = document.getElementById('entries-list');
-  if (entries.length === 0) {
+  if (!entries.length) {
     list.innerHTML = '<div class="no-entries">No signups yet.</div>';
   } else {
-    list.innerHTML = entries.slice().reverse().map(e =>
-      `<div class="entry-row">
-        <div>
-          <div class="entry-name">${esc(e.fname)} ${esc(e.lname)}</div>
-          <div class="entry-email">${esc(e.email)}</div>
+    list.innerHTML = entries.slice().reverse().map(e => {
+      const signals = e.intel && e.intel.signals && e.intel.signals.length
+        ? e.intel.signals.map(s => `<span class="signal-tag">${esc(s)}</span>`).join('') : '';
+      const quote = e.intel && e.intel.quote
+        ? `<div class="entry-quote">"${esc(e.intel.quote)}"</div>` : '';
+      return `<div class="entry-row">
+        <div class="entry-name">${esc(e.fname)} ${esc(e.lname)}</div>
+        <div class="entry-email">${esc(e.email)}</div>
+        <div class="entry-meta">
+          <span>${esc(e.city)}${e.city&&e.state?', ':''}${esc(e.state)} ${esc(e.zip)}</span>
+          ${e.intel && e.intel.shoreRegion ? `<span>🌊 ${esc(e.intel.shoreRegion)}</span>` : ''}
+          ${e.intel && e.intel.sourceType  ? `<span>↳ ${esc(e.intel.sourceType)}</span>` : ''}
         </div>
-        <div>
-          <div class="entry-zip">${esc(e.city)}${e.city && e.state ? ', ' : ''}${esc(e.state)} ${esc(e.zip)}</div>
-          <div style="font-size:11px;color:#aaa;">${new Date(e.ts).toLocaleString()}</div>
-        </div>
-      </div>`
-    ).join('');
+        ${signals ? `<div class="entry-signals">${signals}</div>` : ''}
+        ${quote}
+      </div>`;
+    }).join('');
   }
-
   document.getElementById('admin-overlay').classList.add('open');
 }
+
 function closeAdmin() {
   document.getElementById('admin-overlay').classList.remove('open');
 }
-function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 
 // ── CSV EXPORT ──
 function exportCSV() {
   const entries = getEntries();
   if (!entries.length) { alert('No entries to export.'); return; }
-
-  const headers = ['First Name','Last Name','Email Address','Street','City','State','Zip','Opted In','Timestamp'];
-  const rows = entries.map(e => [
-    csvCell(e.fname), csvCell(e.lname), csvCell(e.email),
-    csvCell(e.street), csvCell(e.city), csvCell(e.state), csvCell(e.zip),
-    e.optin ? 'Yes' : 'No', csvCell(e.ts)
-  ]);
-
-  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const headers = [
+    'First Name','Last Name','Email Address','Street','City','State','Zip','Opted In',
+    'Event','Event City','Event Date','Event Type',
+    'Source Type','Source Detail','Shore Region','Shore Detail',
+    'WWGU Mentioned','Beer Mentioned','Repeat Attendee','Came For Craig',
+    'Met Craig','Brought Friends','Requested Original',
+    'Quote','Notes','Timestamp'
+  ];
+  const rows = entries.map(e => {
+    const i = e.intel || {};
+    const sigs = i.signals || [];
+    return [
+      e.fname, e.lname, e.email, e.street, e.city, e.state, e.zip, e.optin?'Yes':'No',
+      e.event||'', e.eventCity||'', e.eventDate||'', e.eventType||'',
+      i.sourceType||'', i.sourceDetail||'', i.shoreRegion||'', i.shoreDetail||'',
+      sigs.includes('wwgu')?'Yes':'', sigs.includes('beer')?'Yes':'',
+      sigs.includes('repeat')?'Yes':'', sigs.includes('came-for-craig')?'Yes':'',
+      sigs.includes('met-craig')?'Yes':'', sigs.includes('brought-friends')?'Yes':'',
+      sigs.includes('requested-original')?'Yes':'',
+      i.quote||'', i.notes||'', e.ts
+    ].map(csvCell);
+  });
+  const csv = [headers.map(csvCell), ...rows].map(r => r.join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  a.href = url;
-  a.download = `BCC_Signups_${new Date().toISOString().slice(0,10)}.csv`;
+  a.href     = url;
+  a.download = `BCC_PW_${(getEvent()||{}).venue||'Export'}_${getTodayISO()}.csv`;
   a.click();
   URL.revokeObjectURL(url);
 }
 function csvCell(v) {
-  const s = String(v || '');
-  return s.includes(',') || s.includes('"') || s.includes('\n')
-    ? '"' + s.replace(/"/g,'""') + '"'
-    : s;
+  const s = String(v||'');
+  return (s.includes(',')||s.includes('"')||s.includes('\n'))
+    ? '"' + s.replace(/"/g,'""') + '"' : s;
 }
 
 // ── CLEAR ──
@@ -706,15 +1147,19 @@ function clearAll() {
   closeAdmin();
 }
 
-// ── CLEAR ERRORS ON INPUT ──
-['fname','email'].forEach(id => {
-  document.getElementById(id).addEventListener('input', () => {
-    setError('field-' + id, id, false);
-  });
-});
-
 // ── INIT ──
-updateBadge();
+(function init() {
+  document.getElementById('ev-date').value = getTodayISO();
+  const ev = getEvent();
+  if (ev) {
+    updateEventUI();
+    showScreen('screen-signup');
+  }
+  updateBadge();
+  ['fname','email'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => setError('field-'+id, id, false));
+  });
+})();
 </script>
 </body>
 </html>
