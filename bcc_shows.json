@@ -262,5 +262,17 @@
     "with": "",
     "free": true,
     "soldOut": false
+  },
+  {
+    "month": "Jul",
+    "day": "9",
+    "year": "2026",
+    "venue": "The Riverside Inn",
+    "location": "Neshanic Station, NJ",
+    "time": "7PM",
+    "ticketUrl": "#",
+    "with": "",
+    "free": true,
+    "soldOut": false
   }
 ]
