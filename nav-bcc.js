@@ -1,6 +1,6 @@
 (function() {
   var NAV_HTML = `
-  <div id="announce-bar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:10003;background:#8C2F2F;min-height:36px;display:flex;align-items:center;justify-content:center;gap:20px;padding:6px 16px;flex-wrap:wrap;">
+  <div id="announce-bar" style="display:none;position:fixed;top:0;left:0;right:0;z-index:10003;background:#8C2F2F;min-height:36px;align-items:center;justify-content:center;gap:20px;padding:6px 16px;flex-wrap:wrap;">
     <span class="announce-text" id="announce-text"></span>
     <a class="announce-link" id="announce-link" href="#" target="_blank" rel="noopener noreferrer"></a>
   </div>
