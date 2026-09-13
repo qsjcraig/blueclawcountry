@@ -32,27 +32,12 @@
 
   document.write(NAV_HTML);
 
-  // Load banner from shared JSON — fetches from CWM as single source of truth
-  fetch('https://craigwhitakermusic.com/banner.json')
-    .then(function(r) { return r.json(); })
-    .then(function(b) {
-      var bar = document.getElementById('announce-bar');
-      if (!b.active) { bar.style.display = 'none'; return; }
-      document.getElementById('announce-text').textContent = b.text;
-      var link = document.getElementById('announce-link');
-      link.textContent = b.linkLabel + ' ↗';
-      link.href = b.linkUrl;
-      bar.style.display = 'flex';
-    })
-    .catch(function() {
-      document.getElementById('announce-bar').style.display = 'none';
-    });
-
   // Nav scroll behavior
+  var syncNav;
   window.addEventListener('DOMContentLoaded', function() {
     var nav = document.getElementById('navbar');
     var bar = document.getElementById('announce-bar');
-    function syncNav() { if (bar && bar.style.display !== 'none') nav.style.top = bar.offsetHeight + 'px'; else nav.style.top = '0'; }
+    syncNav = function() { if (bar && bar.style.display !== 'none') nav.style.top = bar.offsetHeight + 'px'; else nav.style.top = '0'; };
     syncNav();
     window.addEventListener('resize', syncNav, { passive: true });
     window.addEventListener('scroll', function() {
@@ -60,6 +45,24 @@
       else nav.classList.remove('scrolled');
     }, { passive: true });
   });
+
+  // Load banner from shared JSON — fetches from CWM as single source of truth
+  fetch('https://craigwhitakermusic.com/banner.json')
+    .then(function(r) { return r.json(); })
+    .then(function(b) {
+      var bar = document.getElementById('announce-bar');
+      if (!b.active) { bar.style.display = 'none'; if (syncNav) syncNav(); return; }
+      document.getElementById('announce-text').textContent = b.text;
+      var link = document.getElementById('announce-link');
+      link.textContent = b.linkLabel + ' ↗';
+      link.href = b.linkUrl;
+      bar.style.display = 'flex';
+      if (syncNav) syncNav();
+    })
+    .catch(function() {
+      document.getElementById('announce-bar').style.display = 'none';
+      if (syncNav) syncNav();
+    });
 
   // Mobile menu functions
   window.toggleMobileMenu = function() {
